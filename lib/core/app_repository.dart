@@ -2,10 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:flutter_riverpod/legacy.dart';
 import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
-// import 'package:flutter_riverpod/legacy.dart';
 import 'models.dart';
 
 
@@ -864,9 +862,12 @@ class AppRepository extends ChangeNotifier {
     notifyListeners();
   }
 
-  void markLessonComplete(String projectId, String builderId, String lessonId) {
+void markLessonComplete(String projectId, String builderId, String lessonId) {
     final key = _progressKey(projectId, builderId, currentUserId);
-    final current = [...(completedLessonIds[key] ?? const [])];
+    
+    // FIX: Explicitly type the empty fallback list as <String>[]
+    final current = [...(completedLessonIds[key] ?? const <String>[])];
+    
     if (!current.contains(lessonId)) current.add(lessonId);
     completedLessonIds[key] = current;
     _markPendingSync();

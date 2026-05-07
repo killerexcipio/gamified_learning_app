@@ -28,7 +28,7 @@ The app runs in a local demo mode backed by `AppRepository` and Hive. Supabase c
 
 ```bash
 flutter pub get
-flutter run -d android
+flutter run
 ```
 
 Optional Supabase config:
@@ -71,8 +71,6 @@ https://app.rebelbase.co/invite/stu-builders-F6L4-DEMO
 
 ## Recommended next production steps
 
-1. Replace local `AppRepository` mutations with Supabase gateway calls.
-2. Keep Hive as local cache and sync queue.
-3. Add Supabase Storage uploads for post images, project logos, and Builder answer images.
-4. Harden RLS policies with organization-specific edge cases.
-5. Add push notifications after the in-app notification flow is stable.
+1. Keep Hive as local cache and sync queue.
+2. Harden RLS policies with organization-specific edge cases.
+3. Add push notifications after the in-app notification flow is stable.

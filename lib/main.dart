@@ -12,12 +12,12 @@ Future<void> main() async {
   await Hive.initFlutter();
   final cache = await Hive.openBox<dynamic>('rebelbase_demo_cache');
 
-  const supabaseUrl = String.fromEnvironment('SUPABASE_URL');
-  const supabaseAnonKey = String.fromEnvironment('SUPABASE_ANON_KEY');
+  const supabaseUrl = 'https://zlvzjnvxoabvvsyurmxl.supabase.co';
+  const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpsdnpqbnZ4b2FidnZzeXVybXhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczMzU5NTQsImV4cCI6MjA5MjkxMTk1NH0.XzorR0S5TMBHCEQJ3O47HU9ucbl1gPIF8BbI9Ov-25k';
   final supabaseEnabled = supabaseUrl.isNotEmpty && supabaseAnonKey.isNotEmpty;
-  if (supabaseEnabled) {
-    await Supabase.initialize(url: supabaseUrl, anonKey: supabaseAnonKey);
-  }
+  // if (supabaseEnabled) {
+  await Supabase.initialize(url: supabaseUrl, anonKey: supabaseAnonKey);
+  // }
 
   final repository = AppRepository(cache: cache, supabaseEnabled: supabaseEnabled);
   await repository.load();
